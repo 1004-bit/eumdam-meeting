@@ -7,19 +7,19 @@
   <title>음담모임, 오늘의 이야기를 잇다</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;600;700;900&display=swap');
-    :root { --navy:#14213d; --red:#ff4d38; --cream:#f7f1e3; --yellow:#ffcf43; --ink:#181b20; --muted:#6f7074; --line:#d9d3c5; --white:#fffefa; }
+    :root { --navy:#18332c; --red:#df654e; --cream:#f3f5f1; --yellow:#cfe0d5; --ink:#1e2522; --muted:#707873; --line:#dce2dc; --white:#fcfdfb; }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; }
-    body { margin:0; min-height:100vh; color:var(--ink); background:var(--cream); font-family:"Noto Sans KR",sans-serif; }
+    body { margin:0; min-height:100vh; color:var(--ink); background:radial-gradient(circle at 6% 12%,rgba(177,207,188,.38),transparent 32rem),radial-gradient(circle at 96% 35%,rgba(223,101,78,.1),transparent 28rem),linear-gradient(160deg,#f7f8f5 0%,#eef2ed 100%); background-attachment:fixed; font-family:"Noto Sans KR",sans-serif; }
     button,input,textarea,select { font:inherit; }
     button { cursor:pointer; }
     button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible { outline:3px solid rgba(255,77,56,.3); outline-offset:2px; }
     .hidden { display:none!important; }
-    .bar { position:sticky; top:0; z-index:20; color:#fff; background:var(--navy); border-bottom:4px solid var(--red); }
+    .bar { position:sticky; top:0; z-index:20; color:var(--navy); background:rgba(250,252,249,.86); border-bottom:1px solid rgba(24,51,44,.12); backdrop-filter:blur(18px); }
     .nav { width:min(1160px,calc(100% - 36px)); height:68px; margin:auto; display:flex; align-items:center; gap:24px; }
-    .brand { color:#fff; font-family:"Black Han Sans",sans-serif; font-size:30px; letter-spacing:-.04em; text-decoration:none; }
-    .brand i { color:var(--yellow); font-style:normal; }
-    .nav-copy { color:#bfc7d7; font-size:12px; }
+    .brand { color:var(--navy); font-family:"Black Han Sans",sans-serif; font-size:30px; letter-spacing:-.04em; text-decoration:none; }
+    .brand i { color:var(--red); font-style:normal; }
+    .nav-copy { color:#7d8983; font-size:12px; }
     .nav-actions { margin-left:auto; display:flex; align-items:center; gap:9px; }
     .btn { border:0; border-radius:8px; padding:10px 16px; font-weight:800; transition:.16s; }
     .btn:active { transform:translateY(2px); }
@@ -28,14 +28,14 @@
     .btn-line { color:inherit; background:transparent; border:1px solid currentColor; }
     .member { display:flex; align-items:center; gap:10px; }
     .avatar { width:40px; height:40px; flex:0 0 auto; display:grid; place-items:center; border-radius:50%; color:#fff; background:var(--avatar,#5576b4); font-weight:900; border:2px solid var(--white); }
-    .hero { position:relative; overflow:hidden; color:#fff; background:var(--navy); }
-    .hero::after { content:"음담모임"; position:absolute; right:-20px; bottom:-60px; color:rgba(255,255,255,.045); font-family:"Black Han Sans"; font-size:190px; line-height:1; }
+    .hero { position:relative; overflow:hidden; color:var(--navy); background:linear-gradient(135deg,rgba(255,255,255,.7),rgba(229,238,232,.58)); border-bottom:1px solid rgba(24,51,44,.1); }
+    .hero::after { content:""; position:absolute; width:360px; height:360px; right:6%; top:-220px; border:1px solid rgba(24,51,44,.12); border-radius:50%; box-shadow:0 0 0 70px rgba(255,255,255,.18),0 0 0 140px rgba(24,51,44,.025); }
     .hero-inner { width:min(1160px,calc(100% - 36px)); margin:auto; padding:58px 0 64px; position:relative; z-index:1; }
-    .hero-tag { display:inline-block; margin-bottom:18px; padding:6px 10px; color:var(--navy); background:var(--yellow); font-size:11px; font-weight:900; transform:rotate(-2deg); }
+    .hero-tag { display:inline-block; margin-bottom:18px; padding:6px 10px; color:#fff; background:var(--red); border-radius:999px; font-size:10px; font-weight:900; letter-spacing:.08em; }
     .hero h1 { margin:0; max-width:700px; font-family:"Black Han Sans"; font-size:clamp(40px,7vw,74px); font-weight:400; line-height:1.08; letter-spacing:-.04em; }
     .hero h1 span { color:var(--red); }
-    .hero p { margin:19px 0 0; color:#c8cfdd; line-height:1.75; }
-    .ticker { overflow:hidden; padding:10px 0; color:var(--navy); background:var(--yellow); font-size:12px; font-weight:900; white-space:nowrap; }
+    .hero p { margin:19px 0 0; color:#65716b; line-height:1.75; }
+    .ticker { overflow:hidden; padding:10px 0; color:#dfe9e3; background:rgba(24,51,44,.94); font-size:11px; font-weight:700; letter-spacing:.04em; white-space:nowrap; }
     .ticker span { display:inline-block; animation:slide 24s linear infinite; }
     @keyframes slide { to { transform:translateX(-50%); } }
     .shell { width:min(1160px,calc(100% - 36px)); margin:30px auto 80px; display:grid; grid-template-columns:220px minmax(0,1fr); gap:28px; }
@@ -44,19 +44,19 @@
     .topics { display:grid; gap:5px; }
     .topic { display:flex; justify-content:space-between; padding:11px 12px; border:0; border-radius:6px; color:var(--muted); background:transparent; text-align:left; font-weight:700; }
     .topic:hover,.topic.active { color:#fff; background:var(--navy); }
-    .side-note { margin-top:26px; padding:16px; border:1px solid var(--line); border-radius:8px; color:var(--muted); background:rgba(255,255,255,.38); font-size:12px; line-height:1.7; }
+    .side-note { margin-top:26px; padding:16px; border:1px solid rgba(255,255,255,.85); border-radius:12px; color:var(--muted); background:rgba(255,255,255,.48); box-shadow:0 10px 30px rgba(35,55,46,.05); backdrop-filter:blur(10px); font-size:12px; line-height:1.7; }
     .tools { display:flex; align-items:center; gap:12px; margin-bottom:18px; }
     .tools h2 { margin:0; font-family:"Black Han Sans"; font-size:26px; font-weight:400; }
     .count { color:var(--red); }
     .search { margin-left:auto; width:min(280px,45%); padding:10px 13px; border:1px solid var(--line); border-radius:8px; background:var(--white); }
-    .compose { display:flex; align-items:center; gap:12px; margin-bottom:18px; padding:15px; border:2px solid var(--navy); border-radius:10px; background:var(--white); box-shadow:5px 5px 0 rgba(20,33,61,.12); }
+    .compose { display:flex; align-items:center; gap:12px; margin-bottom:18px; padding:15px; border:1px solid rgba(255,255,255,.9); border-radius:14px; background:rgba(255,255,255,.72); box-shadow:0 14px 36px rgba(35,55,46,.08); backdrop-filter:blur(12px); }
     .compose button { flex:1; padding:12px 14px; border:1px solid var(--line); border-radius:7px; color:var(--muted); background:var(--cream); text-align:left; }
-    .post { position:relative; margin-bottom:14px; padding:22px; border:1px solid var(--line); border-radius:10px; background:var(--white); transition:.18s; }
-    .post:hover { border-color:var(--navy); transform:translateX(3px); }
+    .post { position:relative; margin-bottom:14px; padding:22px; border:1px solid rgba(255,255,255,.9); border-radius:14px; background:rgba(255,255,255,.76); box-shadow:0 8px 28px rgba(35,55,46,.05); backdrop-filter:blur(12px); transition:.18s; }
+    .post:hover { border-color:rgba(24,51,44,.25); transform:translateY(-2px); box-shadow:0 14px 34px rgba(35,55,46,.09); }
     .post-top { display:flex; align-items:center; gap:11px; }
     .post-author strong { display:block; font-size:13px; }
     .post-author time { color:var(--muted); font-size:11px; }
-    .badge { margin-left:auto; padding:5px 9px; border-radius:4px; color:var(--navy); background:var(--yellow); font-size:10px; font-weight:900; }
+    .badge { margin-left:auto; padding:5px 9px; border-radius:999px; color:var(--navy); background:var(--yellow); font-size:10px; font-weight:900; }
     .open-post { width:100%; padding:0; border:0; color:inherit; background:transparent; text-align:left; }
     .post h3 { margin:17px 0 8px; font-size:20px; letter-spacing:-.03em; }
     .post p { display:-webkit-box; margin:0; overflow:hidden; color:#5d5d5f; line-height:1.7; white-space:pre-wrap; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
