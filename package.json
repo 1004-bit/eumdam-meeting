@@ -1,0 +1,13 @@
+{
+  "name": "sai-live-community",
+  "version": "1.0.0",
+  "private": true,
+  "description": "실시간으로 이야기를 나누는 커뮤니티",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

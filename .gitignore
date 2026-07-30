@@ -1,0 +1,5 @@
+community.db
+community.db-shm
+community.db-wal
+.env
+*.log
