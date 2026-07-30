@@ -85,7 +85,7 @@ function parseCookies(req) {
 }
 
 function currentUser(req) {
-  const token = parseCookies(req).nook_session;
+  const token = parseCookies(req).eumdam_session;
   if (!token) return null;
   const tokenHash = crypto.createHash('sha256').update(token).digest('hex');
   return db.prepare(`SELECT users.id, users.username FROM sessions JOIN users ON users.id = sessions.user_id WHERE sessions.token_hash = ? AND sessions.expires_at > ?`).get(tokenHash, Date.now()) || null;
@@ -128,7 +128,7 @@ function createSession(res, userId) {
   const expires = Date.now() + 30 * 24 * 60 * 60 * 1000;
   db.prepare('DELETE FROM sessions WHERE expires_at <= ?').run(Date.now());
   db.prepare('INSERT INTO sessions (token_hash, user_id, expires_at) VALUES (?, ?, ?)').run(crypto.createHash('sha256').update(token).digest('hex'), userId, expires);
-  return { 'Set-Cookie': `nook_session=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=2592000` };
+  return { 'Set-Cookie': `eumdam_session=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=2592000` };
 }
 
 function listPosts(userId = 0) {
@@ -167,9 +167,9 @@ async function api(req, res, url) {
     return json(res, 200, { user: { id: user.id, username: user.username } }, createSession(res, user.id));
   }
   if (method === 'POST' && url.pathname === '/api/logout') {
-    const token = parseCookies(req).nook_session;
+    const token = parseCookies(req).eumdam_session;
     if (token) db.prepare('DELETE FROM sessions WHERE token_hash = ?').run(crypto.createHash('sha256').update(token).digest('hex'));
-    return json(res, 200, { ok: true }, { 'Set-Cookie': 'nook_session=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0' });
+    return json(res, 200, { ok: true }, { 'Set-Cookie': 'eumdam_session=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0' });
   }
   if (method === 'GET' && url.pathname === '/api/posts') return json(res, 200, { posts: listPosts(currentUser(req)?.id) });
   if (method === 'POST' && url.pathname === '/api/posts') {
@@ -250,4 +250,4 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(PORT, HOST, () => console.log(`Nook community listening on http://${HOST}:${PORT}`));
+server.listen(PORT, HOST, () => console.log(`Eumdam Meeting listening on http://${HOST}:${PORT}`));
